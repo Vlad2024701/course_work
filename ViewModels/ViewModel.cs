@@ -12,7 +12,7 @@ namespace AutoParking.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
 
-        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
+        protected virtual bool SetProperty<T>(ref T field, T value, [CallerMemberName] string PropertyName = null)
         {
             if (Equals(field, value))
                 return false;

@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 
+using AutoParking.Services;
+
 namespace AutoParking
 {
 	/// <summary>
@@ -7,5 +9,9 @@ namespace AutoParking
 	/// </summary>
 	public partial class App : Application
 	{
+		private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+		{
+			Logger.Log(e.Exception);
+		}
 	}
 }

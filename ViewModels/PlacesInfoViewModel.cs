@@ -12,7 +12,7 @@ namespace AutoParking.ViewModels
         public List<Place> Places
         {
             get => _places;
-            set => Set(ref _places, value);
+            set => SetProperty(ref _places, value);
         }
 
         public PlacesInfoViewModel()

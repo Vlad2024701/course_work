@@ -8,7 +8,7 @@ namespace AutoParking.Services
 {
 	public static class UserManager
 	{
-		public static AccountBase CurrentUser { get; private set; }
+		public static Account CurrentUser { get; private set; }
 		public static AccountType AccountType { get; private set; }
 
 		static UserManager()
@@ -32,7 +32,7 @@ namespace AutoParking.Services
 
 			var hashedPassword = HashPassword(password);
 
-			var user = SqlClient.GetInstance().Users.ToList()
+			var user = SqlClient.GetInstance().Accounts.ToList()
 				.Find(item => item.Login == login && item.Password == hashedPassword);
 
 			if (user == null)
@@ -49,15 +49,15 @@ namespace AutoParking.Services
 			{
 				var db = SqlClient.GetInstance();
 
-				if (db.Users.Any(item => item.Login == login))
+				if (db.Accounts.Any(item => item.Login == login))
 					return (false, "Логин уже занят"); ;
 
-				if (db.Users.Any(item => item.EMail == email))
+				if (db.Accounts.Any(item => item.EMail == email))
 					return (false, "Почта уже занята");
 
 				var hashedPassword = HashPassword(password);
 
-				db.Users.Add(new User(login, hashedPassword, email, surname, name, middleName));
+				db.Accounts.Add(new User(login, hashedPassword, email, surname, name, middleName));
 				db.SaveChanges();
 
 				return (true, null);

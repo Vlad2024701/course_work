@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Services\Logger.cs" />
     <Compile Include="Services\Singleton.cs" />
     <Compile Include="Services\SqlClient.cs" />
     <Compile Include="Services\UserManager.cs" />
@@ -131,9 +133,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AccountBase.cs" />
+    <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Admin.cs" />
-    <Compile Include="Model\Auto.cs" />
+    <Compile Include="Model\Car.cs" />
     <Compile Include="Model\Booking.cs" />
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\Model.Designer.cs">

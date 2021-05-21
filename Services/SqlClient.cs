@@ -1,79 +1,77 @@
-﻿using System.Data.Entity;
-using System.Data.SqlClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 
 using AutoParking.Model;
 
 namespace AutoParking.Services
 {
-	class SqlClient : DbContext
+	public class SqlClient : DbContext
     {
-        const int placesAmt = 25;
+		#region Connection
 
-        public const string connectionString = "Data Source=desktop-dqpufti;Initial Catalog=AutoParking;Integrated Security=True";
+		private static readonly string connectionString;
 
-        #region Connection
+		static SqlClient()
+		{
+			connectionString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
 
-        private static readonly SqlConnection connection;
+			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SqlClient>());
+		}
 
-        static SqlClient()
-        {
-            connection = new SqlConnection(connectionString);
-            connection.Open();
-
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SqlClient>());
-        }
-
-        #endregion
+		#endregion
 
 
-        #region Singleton
+		#region Singleton
 
-        private static SqlClient _instance;
+		private static SqlClient _instance;
 
-        public static SqlClient GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new SqlClient();
-                if (_instance.Places.Count() == 0)
-                    _instance.FillDb();
-            }
-            return _instance;
-        }
+		public static SqlClient GetInstance()
+		{
+			if (_instance == null)
+				_instance = new SqlClient();
+			return _instance;
+		}
 
-        private SqlClient() : base(connection, true) { }
+		public static SqlClient GetInstance(string connectionString)
+		{
+			if (_instance == null)
+				_instance = new SqlClient(connectionString);
+			return _instance;
+		}
 
-        #endregion
+		private SqlClient() : base(connectionString) { }
+
+		private SqlClient(string connectionString) : base(connectionString) { }
+
+		#endregion
 
 
-        #region Tables
+		#region Tables
 
-        public DbSet<Auto> Auto { get; set; }
+		public DbSet<Car> Cars { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<Place> Places { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+
+		#endregion
+
+
+		#region Methods
+
+		public static List<User> GetUsers() => GetInstance().Accounts
+			.Where(account => account.AccountType == AccountType.User)
+			.Select(account => account as User).ToList();
+
+		public static List<Place> GetOccupiedPlaces(DateTime time) => GetInstance().Places
+			.Where(place => !place.Bookings.Any(booking => booking.StartTime < time && booking.EndTime > time))
+			.ToList();
 
         #endregion
-
-
-        #region Methods
-
-        public static User GetUserByAuto(Auto auto) => 
-            GetInstance().Users.Where(user => user.Autos.Any(a => a.Number == auto.Number)).FirstOrDefault();
-
-        #endregion
-
-        private void FillDb()
-        {
-            var db = GetInstance();
-
-            for (int i = 0; i < placesAmt; i++) db.Places.Add(new Place());
-
-            db.SaveChanges();
-        }
     }
 }
