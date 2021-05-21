@@ -1,0 +1,69 @@
+﻿<Window x:Class="AutoParking.Views.Windows.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoParking.Windows"
+        xmlns:vm="clr-namespace:AutoParking.ViewModels"
+        xmlns:model="clr-namespace:AutoParking.Model"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="AdminParkingPlaces" Height="800" Width="1000">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="PlaceButton" DataType="{x:Type model:Place}">
+            <Button Content="{Binding Id}">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
+                        <Setter Property="Width" Value="120"/>
+                        <Setter Property="Height" Value="60"/>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel>
+        <StackPanel  DockPanel.Dock="Top" VerticalAlignment="Top">
+            <materialDesign:ColorZone Mode="PrimaryMid">
+                <Grid Height="50">
+                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0"/>
+
+                    <Button Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Right"
+                            Margin="0 0 20 0"
+                            Command="{Binding LogoutCommand}">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Logout"/>
+                                <TextBlock Text="Выход"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </materialDesign:ColorZone>
+
+            <materialDesign:ColorZone Mode="PrimaryDark">
+                <StackPanel Orientation="Horizontal" Margin="2">
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="4" IsChecked="True" Content="Места"
+                                 x:Name="Places_Button" Click="Places_Button_Click"/>
+
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="4" IsChecked="False" Content="Информация о местах"
+                                 x:Name="PlacesInfo_Button" Click="PlacesInfo_Button_Click"/>
+
+                    <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
+                                 Margin="4" IsChecked="False" Content="Информация о пользователях"
+                                 x:Name="UsersInfo_Button" Click="UsersInfo_Button_Click"/>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </StackPanel>
+
+        <Frame x:Name="MainContent" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+
+    </DockPanel>
+</Window>

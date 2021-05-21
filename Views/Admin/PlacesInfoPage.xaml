@@ -1,0 +1,43 @@
+﻿<Page x:Class="AutoParking.Views.Admin.PlacesInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParking.Views.Admin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="PlacesInfoPage">
+
+    <Grid Background="Bisque">
+        <StackPanel>
+            <Grid>
+                <ListBox ItemsSource="{Binding PlacesInfo}" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+            </Grid>
+        </StackPanel>
+        <DataGrid x:Name="dataOfUsers" ItemsSource="{Binding Places}" Background="Bisque">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding ="{Binding Id}" Header="Место" Width="80"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding FullName}" Header="ФИО" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding StartTime}" Header="Начало брони" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding EndTime}" Header="Конец брони" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding Price}" Header="Цена" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding IsEnded}" Header="Состояние" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding ="{Binding Autos.Count}" Header="Кол-во машин" Width="*"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <DataGrid ItemsSource="{Binding Autos}">
+                        <DataGridTextColumn Binding ="{Binding Number}" Header="Номер" Width="*"></DataGridTextColumn>
+                        <DataGridTextColumn Binding ="{Binding Model}" Header="Модель" Width="*"></DataGridTextColumn>
+                    </DataGrid>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </Grid>
+</Page>

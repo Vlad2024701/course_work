@@ -1,0 +1,49 @@
+﻿<Window x:Class="AutoParking.Windows.BronirovaniePlaceFromUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoParking.Windows"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="BronirovaniePlaceFromUser" Height="350" Width="800">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                    <RowDefinition Height="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Введите данные для бронирования парковочного места" Grid.ColumnSpan="4" Style="{StaticResource MaterialDesignHeadline6TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Фамилия" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Имя" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Отчество" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Модель авто" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Время стоянки (часов)" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="6" Grid.Column="0" Text="Номер авто" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="Итого к оплате (BYN)" Margin="10,0,0,0" Style="{StaticResource MaterialDesignBody1TextBlock}"></TextBlock>
+
+                <TextBox x:Name="textBox_Surame_Bron" materialDesign:HintAssist.Hint = "Иванов" Grid.Column="1" Grid.Row="1" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_Name_Bron" materialDesign:HintAssist.Hint = "Иван" Grid.Column="1" Grid.Row="2" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_MiddleName_Bron" materialDesign:HintAssist.Hint = "Иванович" Grid.Column="1" Grid.Row="3" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_Auto_Bron" materialDesign:HintAssist.Hint = "Audi R8" Grid.Column="1" Grid.Row="4" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_Time_Bron" materialDesign:HintAssist.Hint = "24" Grid.Column="1" Grid.Row="5" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_NumberAuto_Bron" materialDesign:HintAssist.Hint = "1234 AB-7" Grid.Column="1" Grid.Row="6" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox x:Name="textBox_Summ_Bron" materialDesign:HintAssist.Hint = "0" Grid.Column="1" Grid.Row="7" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
