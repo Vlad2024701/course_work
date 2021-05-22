@@ -87,11 +87,11 @@ namespace AutoParking.ViewModels
 
 			SqlClient.GetInstance().Bookings.Add(
 				new Booking(UserManager.CurrentUser as User, Place,
-								  DateTime.Now, DateTime.Now.AddHours(Convert.ToDouble(Hours)), _carNumber));
+								  DateTime.Now, DateTime.Now.AddHours(Convert.ToDouble(Hours)),_carNumber));
 
 			SqlClient.GetInstance().SaveChanges();
 
-			MessageBox.Show("Место успешно забронировано");
+			MessageBox.Show("Место успешно забронировано"); 
 			CloseRequest?.Invoke(this, EventArgs.Empty);
 		}
 

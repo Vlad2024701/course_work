@@ -25,8 +25,8 @@ namespace AutoParking.Views.Windows
             string pass2 = PassBox2.Password.Trim();
             string email = textBox_Email.Text.Trim().ToLower();
             string name = textBox_Name.Text.Trim();
-            string surname = textBox_Name.Text.Trim();
-            string middle = textBox_Name.Text.Trim();
+            string surname = textBox_Surname.Text.Trim();
+            string middle = textBox_MiddleName.Text.Trim();
             Regex emailRegex = new Regex(@"^([a-z\d\.-]+)@([a-z\d-]+)((\.([a-z]){2,4}])+)$", RegexOptions.IgnoreCase);
             //Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
             Regex nameRegex = new Regex(@"^([А-я]+|[A-z]){2,30}$");
