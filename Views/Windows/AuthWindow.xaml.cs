@@ -13,7 +13,6 @@ namespace AutoParking.Views.Windows
         public AuthWindow()
         {
             InitializeComponent();
-
         }
 
         private void Border_MouseDown(object sender, RoutedEventArgs e)
@@ -47,9 +46,9 @@ namespace AutoParking.Views.Windows
                 {
                     Window window;
                     if (UserManager.AccountType == AccountType.Admin)
-                        window = new AdminWindow();
+                        window = new Admin.MainWindow();
                     else
-                        window = new UserWindow();
+                        window = new User.MainWindow();
 
                     Application.Current.MainWindow = window;
                     Close();
@@ -75,5 +74,5 @@ namespace AutoParking.Views.Windows
             window.Height = 500;
             window.Show();
         }
-    }
+	}
 }

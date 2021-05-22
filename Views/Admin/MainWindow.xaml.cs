@@ -1,22 +1,23 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-using AutoParking.Views.Admin;
+using AutoParking.ViewModels;
 
-namespace AutoParking.Views.Windows
+namespace AutoParking.Views.Admin
 {
 	/// <summary>
-	/// Логика взаимодействия для AdminWindow.xaml
+	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
-	public partial class AdminWindow : Window
+	public partial class MainWindow : Window
     {
-		public static AdminWindow Instance { get; private set; }
+		public static MainWindow Instance { get; private set; }
 		public static Pages CurrentPage { get; private set; }
 
-        public AdminWindow()
+        public MainWindow()
         {
 			Instance = this;
             InitializeComponent();
+			(DataContext as MainViewModel).CloseRequest += (sender, e) => Close();
 
 			SwitchPage(Pages.Places);
 		}

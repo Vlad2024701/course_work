@@ -1,4 +1,4 @@
-﻿namespace AutoParking.Model
+﻿namespace AutoParking.Models
 {
 	public class Admin : Account
     {

@@ -56,17 +56,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\OpenBookingCommand.cs" />
     <Compile Include="Services\Logger.cs" />
     <Compile Include="Services\Singleton.cs" />
     <Compile Include="Services\SqlClient.cs" />
     <Compile Include="Services\UserManager.cs" />
+    <Compile Include="Services\Validator.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\NewBookingViewModel.cs" />
     <Compile Include="ViewModels\PlacesInfoViewModel.cs" />
     <Compile Include="ViewModels\UsersInfoViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Views\Admin\AdminWindow.xaml.cs">
-      <DependentUpon>AdminWindow.xaml</DependentUpon>
+    <Compile Include="Views\Admin\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Admin\Pages.cs" />
     <Compile Include="Views\Admin\PlacesInfoPage.xaml.cs">
@@ -79,11 +81,11 @@
       <DependentUpon>UsersInfoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ICloseable.cs" />
-    <Compile Include="Views\User\BookingPage.xaml.cs">
-      <DependentUpon>BookingPage.xaml</DependentUpon>
+    <Compile Include="Views\User\BookingWindow.xaml.cs">
+      <DependentUpon>BookingWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\User\UserWindow.xaml.cs">
-      <DependentUpon>UserWindow.xaml</DependentUpon>
+    <Compile Include="Views\User\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
@@ -97,9 +99,7 @@
     </Compile>
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Commands\SwitchAdminPageCommand.cs" />
-    <Compile Include="Commands\SwitchUserPageCommand.cs" />
-    <Page Include="Views\Admin\AdminWindow.xaml">
+    <Page Include="Views\Admin\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -115,11 +115,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\User\BookingPage.xaml">
+    <Page Include="Views\User\BookingWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\User\UserWindow.xaml">
+    <Page Include="Views\User\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -133,16 +133,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Account.cs" />
-    <Compile Include="Model\Admin.cs" />
-    <Compile Include="Model\Car.cs" />
-    <Compile Include="Model\Booking.cs" />
-    <Compile Include="Model\Model.cs" />
-    <Compile Include="Model\Model.Designer.cs">
-      <DependentUpon>Model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Place.cs" />
-    <Compile Include="Model\User.cs" />
+    <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Booking.cs" />
+    <Compile Include="Models\Place.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

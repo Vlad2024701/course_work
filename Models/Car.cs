@@ -3,13 +3,13 @@
 namespace AutoParking.Model
 {
 	public class Car
-    {
-        [Key]
-        public int Id { get; set; }
+	{
+		[Key]
+		public int Id { get; set; }
 
-        [Required]
-        public string Number { get; set; }
-        public string Model { get; set; }
+		[Required]
+		public string Number { get; set; }
+		public string Model { get; set; }
 
 		public Car() => Id = 0;
 

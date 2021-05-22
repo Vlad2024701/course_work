@@ -1,8 +1,7 @@
-﻿using AutoParking.Model;
+﻿using AutoParking.Models;
 using AutoParking.Services;
 
 using System.Collections.Generic;
-using System.Linq;
 
 namespace AutoParking.ViewModels
 {

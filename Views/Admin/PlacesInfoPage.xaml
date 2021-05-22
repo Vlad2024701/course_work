@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoParking.Views.Admin"
       xmlns:vm="clr-namespace:AutoParking.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="1000"
       Title="PlacesInfoPage">
@@ -14,22 +15,30 @@
     </Page.DataContext>
 
     <Grid Background="Bisque">
-        <DataGrid x:Name="dataOfUsers" ItemsSource="{Binding Places}" Background="Bisque">
+        <DataGrid ItemsSource="{Binding Places}" Background="Bisque" AutoGenerateColumns="False" IsReadOnly="True"
+                  VirtualizingPanel.ScrollUnit="Pixel">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding ="{Binding Id}" Header="Место" Width="80"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding FullName}" Header="ФИО" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding StartTime}" Header="Начало брони" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding EndTime}" Header="Конец брони" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Price}" Header="Цена" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding IsEnded}" Header="Состояние" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Autos.Count}" Header="Кол-во машин" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Место" Width="80"/>
+                <DataGridCheckBoxColumn Binding="{Binding IsBooked, Mode=OneWay}" Header="Занято" Width="80"/>
+                <DataGridTextColumn Binding="{Binding CurrentBooking.User.FullName}" Header="ФИО" Width="200"/>
+                <DataGridTextColumn Binding="{Binding CurrentBooking.User.CarNumber}" Header="Номер машины" Width="200"/>
+                <DataGridTextColumn Binding="{Binding CurrentBooking.StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
+                <DataGridTextColumn Binding="{Binding CurrentBooking.EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <DataGrid ItemsSource="{Binding Autos}">
-                        <DataGridTextColumn Binding ="{Binding Number}" Header="Номер" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Binding ="{Binding Model}" Header="Модель" Width="*"></DataGridTextColumn>
-                    </DataGrid>
+                    <materialDesign:Card Margin="10">
+                        <DataGrid ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" IsReadOnly="True"
+                              VirtualizingPanel.ScrollUnit="Pixel">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="80"/>
+                                <DataGridTextColumn Binding="{Binding User.FullName}" Header="ФИО" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding User.CarNumber}" Header="Номер машины" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

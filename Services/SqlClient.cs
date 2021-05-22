@@ -4,7 +4,7 @@ using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
 
-using AutoParking.Model;
+using AutoParking.Models;
 
 namespace AutoParking.Services
 {
@@ -50,8 +50,6 @@ namespace AutoParking.Services
 
 
 		#region Tables
-
-		public DbSet<Car> Cars { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
 

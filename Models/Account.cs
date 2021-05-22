@@ -2,7 +2,7 @@
 
 using AutoParking.Services;
 
-namespace AutoParking.Model
+namespace AutoParking.Models
 {
 	public abstract class Account
 	{
@@ -20,9 +20,9 @@ namespace AutoParking.Model
 		public string EMail { get; set; }
 
 		[Required]
-		public string Name { get; set; }
-		[Required]
 		public string Surname { get; set; }
+		[Required]
+		public string Name { get; set; }
 		[Required]
 		public string MiddleName { get; set; }
 

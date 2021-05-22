@@ -4,9 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:AutoParking.Views.Admin"
+      xmlns:vm="clr-namespace:AutoParking.ViewModels"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="UsersInfoPage">
+
+    <Page.DataContext>
+        <vm:UsersInfoViewModel/>
+    </Page.DataContext>
 
     <Grid Background="Bisque">
         <StackPanel>
@@ -20,18 +26,29 @@
                 </ListBox>
             </Grid>
         </StackPanel>
-        <DataGrid x:Name="dataOfUsers" ItemsSource="{Binding Users}">
+        <DataGrid ItemsSource="{Binding Users, Mode=OneWay}" IsReadOnly="True" AutoGenerateColumns="False"
+                  VirtualizingPanel.ScrollUnit="Pixel">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding ="{Binding FullName}" Header="ФИО" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding EMail}" Header="Почта" Width="*"></DataGridTextColumn>
-                <DataGridTextColumn Binding ="{Binding Autos.Count}" Header="Кол-во машин" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="*"/>
+                <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="*"/>
+                <DataGridTextColumn Binding="{Binding EMail}" Header="Почта" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Login}" Header="Логин" Width="*"/>
+                <DataGridTextColumn Binding="{Binding CarNumber}" Header="Номер машины" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <DataGrid ItemsSource="{Binding Autos}">
-                        <DataGridTextColumn Binding ="{Binding Number}" Header="Номер" Width="*"></DataGridTextColumn>
-                        <DataGridTextColumn Binding ="{Binding Model}" Header="Модель" Width="*"></DataGridTextColumn>
+                    <materialDesign:Card Margin="10">
+                        <DataGrid ItemsSource="{Binding Bookings}" IsReadOnly="True" AutoGenerateColumns="False"
+                              VirtualizingPanel.ScrollUnit="Pixel">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding Place.Id}" Header="Место" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="150"/>
+                                <DataGridTextColumn Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Конец брони" Width="150"/>
+                                <DataGridTextColumn Binding="{Binding Price, StringFormat=\{0:c\}}" Header="Оплата" Width="100"/>
+                        </DataGrid.Columns>
                     </DataGrid>
+                    </materialDesign:Card>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>

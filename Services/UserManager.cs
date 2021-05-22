@@ -1,4 +1,4 @@
-﻿using AutoParking.Model;
+﻿using AutoParking.Models;
 
 using System.Linq;
 using System.Security.Cryptography;
@@ -13,13 +13,10 @@ namespace AutoParking.Services
 
 		static UserManager()
 		{
-			//Login("Vlad", "123456");
-			//if (CurrentUser == null)
-			//{
-			//	Register("Vlad", "123456", "vlad@gmail.com", "Симакович", "Владислав", "Витальевич");
-			//	Login("Vlad", "123456");
-			//}
-			//AccountType = AccountType.None;
+			AccountType = AccountType.None;
+
+			//Login("Kirill", "123456");
+			Login("login1", "password1");
 		}
 
 		public static bool Login(string login, string password)
@@ -43,7 +40,7 @@ namespace AutoParking.Services
 			return true;
 		}
 
-		public static (bool result, string error) Register(string login, string password, string email, string surname, string name, string middleName)
+		public static (bool result, string error) Register(string login, string password, string email, string surname, string name, string middleName, string car = null)
 		{
 			try
 			{
@@ -57,7 +54,7 @@ namespace AutoParking.Services
 
 				var hashedPassword = HashPassword(password);
 
-				db.Accounts.Add(new User(login, hashedPassword, email, surname, name, middleName));
+				db.Accounts.Add(new User(login, hashedPassword, email, surname, name, middleName, car));
 				db.SaveChanges();
 
 				return (true, null);
@@ -68,7 +65,7 @@ namespace AutoParking.Services
 			}
 		}
 
-		private static string HashPassword(string password)
+		public static string HashPassword(string password)
 		{
 			var hashBytes = MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(password));
 
