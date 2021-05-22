@@ -25,5 +25,7 @@ namespace AutoParking.ViewModels
 
             OpenBookingCommand.BookingComplete += () => OnPropertyChanged("Places");
         }
+
+
     }
 }

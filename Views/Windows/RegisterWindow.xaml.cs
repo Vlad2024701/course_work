@@ -32,21 +32,24 @@ namespace AutoParking.Views.Windows
             Regex nameRegex = new Regex(@"^([А-я]+|[A-z]){2,30}$");
             bool pass = true;
 
-            if (string.IsNullOrEmpty(name) && nameRegex.IsMatch(name))
+            if (string.IsNullOrEmpty(name) && !nameRegex.IsMatch(name))
             {
                 textBox_Name.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
                 textBox_Name.Background = Brushes.PaleVioletRed;
+                pass = false;
             }
 
-            else if (string.IsNullOrEmpty(surname) && nameRegex.IsMatch(name))
+            else if (string.IsNullOrEmpty(surname) && !nameRegex.IsMatch(name))
             {
                 textBox_Surname.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
                 textBox_Surname.Background = Brushes.PaleVioletRed;
+                pass = false;
             }
-            else if (string.IsNullOrEmpty(middle) && nameRegex.IsMatch(middle))
+            else if (string.IsNullOrEmpty(middle) && !nameRegex.IsMatch(middle))
             {
                 textBox_MiddleName.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
                 textBox_MiddleName.Background = Brushes.PaleVioletRed;
+                pass = false;
             }
             else if (login.Length < 4 || login.Length > 35)
             {

@@ -41,7 +41,6 @@ namespace DbFiller
 
 		static void InsertAdmins()
 		{
-			db.Accounts.Add(new Admin("Kirill", UserManager.HashPassword("123456"), "kirill@gmail.com", "Олешкевич", "Кирилл", "Вадимович"));
 			db.Accounts.Add(new Admin("Vlad", UserManager.HashPassword("123456"), "vlad@gmail.com", "Симакович", "Владислав", "Витальевич"));
 
 			db.SaveChanges();
