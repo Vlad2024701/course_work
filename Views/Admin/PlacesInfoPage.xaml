@@ -21,7 +21,7 @@
                 <DataGridTextColumn Binding="{Binding Id}" Header="Место" Width="80"/>
                 <DataGridCheckBoxColumn Binding="{Binding IsBooked, Mode=OneWay}" Header="Занято" Width="80"/>
                 <DataGridTextColumn Binding="{Binding CurrentBooking.User.FullName}" Header="ФИО" Width="200"/>
-                <DataGridTextColumn Binding="{Binding CurrentBooking.User.CarNumber}" Header="Номер машины" Width="200"/>
+                <DataGridTextColumn Binding="{Binding CurrentBooking.CarNumber}" Header="Номер машины" Width="200"/>
                 <DataGridTextColumn Binding="{Binding CurrentBooking.StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
                 <DataGridTextColumn Binding="{Binding CurrentBooking.EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
             </DataGrid.Columns>
@@ -33,7 +33,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="80"/>
                                 <DataGridTextColumn Binding="{Binding User.FullName}" Header="ФИО" Width="200"/>
-                                <DataGridTextColumn Binding="{Binding User.CarNumber}" Header="Номер машины" Width="200"/>
+                                <DataGridTextColumn Binding="{Binding CarNumber}" Header="Номер машины" Width="200"/>
                                 <DataGridTextColumn Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
                                 <DataGridTextColumn Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
                             </DataGrid.Columns>

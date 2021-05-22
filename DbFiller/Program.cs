@@ -52,15 +52,15 @@ namespace DbFiller
 
 			db.Accounts.AddRange(new List<User>()
 			{
-				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1"),
-				new User("login2", UserManager.HashPassword("password2"), "email2@gmail.com", "Фамилия2", "Имя2", "Отчество2"),
-				new User("login3", UserManager.HashPassword("password3"), "email3@gmail.com", "Фамилия3", "Имя3", "Отчество3"),
-				new User("login4", UserManager.HashPassword("password4"), "email4@gmail.com", "Фамилия4", "Имя4", "Отчество4"),
-				new User("login5", UserManager.HashPassword("password5"), "email5@gmail.com", "Фамилия5", "Имя5", "Отчество5"),
-				new User("login6", UserManager.HashPassword("password6"), "email6@gmail.com", "Фамилия6", "Имя6", "Отчество6"),
-				new User("login7", UserManager.HashPassword("password7"), "email7@gmail.com", "Фамилия7", "Имя7", "Отчество7"),
-				new User("login8", UserManager.HashPassword("password8"), "email8@gmail.com", "Фамилия8", "Имя8", "Отчество8"),
-				new User("login9", UserManager.HashPassword("password9"), "email9@gmail.com", "Фамилия9", "Имя9", "Отчество9"),
+				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1", "1111AB-7"),
+				new User("login2", UserManager.HashPassword("password2"), "email2@gmail.com", "Фамилия2", "Имя2", "Отчество2", "1122AB-7"),
+				new User("login3", UserManager.HashPassword("password3"), "email3@gmail.com", "Фамилия3", "Имя3", "Отчество3", "1133AB-7"),
+				new User("login4", UserManager.HashPassword("password4"), "email4@gmail.com", "Фамилия4", "Имя4", "Отчество4", "1144AB-7"),
+				new User("login5", UserManager.HashPassword("password5"), "email5@gmail.com", "Фамилия5", "Имя5", "Отчество5", "1155AB-7"),
+				new User("login6", UserManager.HashPassword("password6"), "email6@gmail.com", "Фамилия6", "Имя6", "Отчество6", "1166AB-7"),
+				new User("login7", UserManager.HashPassword("password7"), "email7@gmail.com", "Фамилия7", "Имя7", "Отчество7", "1177AB-7"),
+				new User("login8", UserManager.HashPassword("password8"), "email8@gmail.com", "Фамилия8", "Имя8", "Отчество8", "1188AB-7"),
+				new User("login9", UserManager.HashPassword("password9"), "email9@gmail.com", "Фамилия9", "Имя9", "Отчество9", "1199AB-7"),
 			});
 
 			db.SaveChanges();
@@ -83,6 +83,7 @@ namespace DbFiller
 		static class Simulation
 		{
 			static readonly Random rndm = new Random();
+			private static string carNumber = "1111AB-2";
 
 			public static List<Booking> Simulate(List<User> users, List<Place> places, DateTime initialDate)
 			{

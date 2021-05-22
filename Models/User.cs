@@ -1,10 +1,22 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+
+using AutoParking.Services;
 
 namespace AutoParking.Models
 {
 	public class User : Account
 	{
 		public virtual List<Booking> Bookings { get; set; } = new List<Booking>();
+
+		[NotMapped]
+		public List<string> Cars => SqlClient.GetInstance().Bookings.ToList()
+			.Where(booking => booking.User == this)
+			.Select(booking => booking.CarNumber).Distinct().ToList();
+
+		[NotMapped]
+		public string CarsStr => string.Join(" ", Cars).Trim();
 
 		public User() : base(Services.AccountType.User) { }
 

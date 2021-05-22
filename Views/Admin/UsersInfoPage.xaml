@@ -33,7 +33,7 @@
                 <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="*"/>
                 <DataGridTextColumn Binding="{Binding EMail}" Header="Почта" Width="*"/>
                 <DataGridTextColumn Binding="{Binding Login}" Header="Логин" Width="*"/>
-                <DataGridTextColumn Binding="{Binding CarNumber}" Header="Номер машины" Width="*"/>
+                <DataGridTextColumn Binding="{Binding CarsStr}" Header="Номер машины" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
