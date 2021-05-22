@@ -24,11 +24,31 @@ namespace AutoParking.Views.Windows
             string pass1 = PassBox1.Password.Trim();
             string pass2 = PassBox2.Password.Trim();
             string email = textBox_Email.Text.Trim().ToLower();
-            //Regex emailRegex = new Regex(@"^([a-z\d\.-]+)@([a-z\d-]+)((\.([a-z]){2,4}])+)$", RegexOptions.IgnoreCase);
-            Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+            string name = textBox_Name.Text.Trim();
+            string surname = textBox_Name.Text.Trim();
+            string middle = textBox_Name.Text.Trim();
+            Regex emailRegex = new Regex(@"^([a-z\d\.-]+)@([a-z\d-]+)((\.([a-z]){2,4}])+)$", RegexOptions.IgnoreCase);
+            //Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+            Regex nameRegex = new Regex(@"^([А-я]+|[A-z]){2,30}$");
             bool pass = true;
 
-            if (login.Length < 4 || login.Length > 35)
+            if (string.IsNullOrEmpty(name) && nameRegex.IsMatch(name))
+            {
+                textBox_Name.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
+                textBox_Name.Background = Brushes.PaleVioletRed;
+            }
+
+            else if (string.IsNullOrEmpty(surname) && nameRegex.IsMatch(name))
+            {
+                textBox_Surname.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
+                textBox_Surname.Background = Brushes.PaleVioletRed;
+            }
+            else if (string.IsNullOrEmpty(middle) && nameRegex.IsMatch(middle))
+            {
+                textBox_MiddleName.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
+                textBox_MiddleName.Background = Brushes.PaleVioletRed;
+            }
+            else if (login.Length < 4 || login.Length > 35)
             {
                 textBox_Login.ToolTip = "Длина логина от 4 до 35 символов";
                 textBox_Login.Background = Brushes.PaleVioletRed;
@@ -69,6 +89,9 @@ namespace AutoParking.Views.Windows
             string login = textBox_Login.Text.Trim();
             string password = PassBox1.Password.Trim();
             string email = textBox_Email.Text.Trim().ToLower();
+            string name = textBox_Name.Text.Trim();
+            string surname = textBox_Name.Text.Trim();
+            string middle = textBox_Name.Text.Trim();
 
             textBox_Login.ToolTip = null;
             textBox_Login.Background = Brushes.Transparent;
@@ -78,10 +101,12 @@ namespace AutoParking.Views.Windows
             PassBox2.Background = Brushes.Transparent;
             textBox_Email.ToolTip = null;
             textBox_Email.Background = Brushes.Transparent;
-
-            var surname = "tempSurname";
-            var name = "tempName";
-            var middle = "tempMiddlename";
+            textBox_Name.ToolTip = null;
+            textBox_Name.Background = Brushes.Transparent;
+            textBox_Surname.ToolTip = null;
+            textBox_Surname.Background = Brushes.Transparent;
+            textBox_MiddleName.ToolTip = null;
+            textBox_MiddleName.Background = Brushes.Transparent;
 
             var respone = UserManager.Register(login, password, email, surname, name, middle);
             if (respone.result)
@@ -110,15 +135,9 @@ namespace AutoParking.Views.Windows
             window.Show();
         }
 
-        private void Border_MouseDown(object sender, RoutedEventArgs e)
-        {
-            DragMove();
-        }
+        private void Border_MouseDown(object sender, RoutedEventArgs e) => DragMove();
 
-        private void Button_Reg_Click(object sender, RoutedEventArgs e)
-        {
-            Register();
-        }
+        private void Button_Reg_Click(object sender, RoutedEventArgs e) => Register();
 
         private void Button_Enter_Click(object sender, RoutedEventArgs e)
         {

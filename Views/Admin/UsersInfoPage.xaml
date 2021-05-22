@@ -27,7 +27,7 @@
             </Grid>
         </StackPanel>
         <DataGrid ItemsSource="{Binding Users, Mode=OneWay}" IsReadOnly="True" AutoGenerateColumns="False"
-                  VirtualizingPanel.ScrollUnit="Pixel">
+                  VirtualizingPanel.ScrollUnit="Pixel" Background="Bisque">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="*"/>
                 <DataGridTextColumn Binding="{Binding FullName}" Header="ФИО" Width="*"/>

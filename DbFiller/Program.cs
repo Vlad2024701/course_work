@@ -22,8 +22,6 @@ namespace DbFiller
 			Console.WriteLine("Места вставлены");
 			InsertAdmins();
 			Console.WriteLine("Админы вставлены");
-			//InsertCars();
-			//Console.WriteLine("Машины вставлены");
 			InsertUsers();
 			Console.WriteLine("Пользователи вставлены");
 			InsertBookings();
@@ -42,14 +40,13 @@ namespace DbFiller
 
 		static void InsertAdmins()
 		{
-			db.Accounts.Add(new Admin("Kirill", UserManager.HashPassword("123456"), "kirill@gmail.com", "Олешкевич", "Кирилл", "Вадимович"));
+			db.Accounts.Add(new Admin("Vlad", UserManager.HashPassword("123456"), "vlad@gmail.com", "Симакович", "Владислав", "Витальевич"));
 
 			db.SaveChanges();
 		}
 
 		static void InsertUsers()
 		{
-			//var cars = db.Cars.ToList();
 
 			db.Accounts.AddRange(new List<User>()
 			{
@@ -66,27 +63,6 @@ namespace DbFiller
 
 			db.SaveChanges();
 		}
-
-		//static void InsertCars()
-		//{
-		//	db.Cars.AddRange(new List<Car>()
-		//	{
-		//		new Car("1111AB-7", "Модель1"),
-		//		new Car("1122AB-7", "Модель1"),
-		//		new Car("1133AB-7", "Модель2"),
-		//		new Car("1144AB-7", "Модель2"),
-		//		new Car("1155AB-7", "Модель3"),
-		//		new Car("1166AB-7", "Модель3"),
-		//		new Car("1177AB-7", "Модель3"),
-		//		new Car("1188AB-7", "Модель4"),
-		//		new Car("1199AB-7", "Модель5"),
-		//		new Car("AB2200-7", "Модель6"),
-		//		new Car("AB2211-7", "Модель7"),
-		//		new Car("AB2222-7", "Модель8"),
-		//	});
-
-		//	db.SaveChanges();
-		//}
 
 		static void InsertBookings()
 		{

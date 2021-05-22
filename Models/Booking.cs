@@ -12,6 +12,8 @@ namespace AutoParking.Models
         public int Id { get; set; }
 
         [Required]
+        public string CarNumber { get; set; }
+        [Required]
         public User User { get; set; }
         [Required]
         public Place Place { get; set; }
@@ -27,10 +29,11 @@ namespace AutoParking.Models
 
         public Booking() { Id = 0; }
 
-		public Booking(User user, Place place, DateTime startTime, DateTime endTime)
+		public Booking(User user, Place place, DateTime startTime, DateTime endTime, string carNumber)
 		{
             Id = 0;
 			User = user;
+            CarNumber = carNumber;
             Place = place;
 			StartTime = startTime;
 			EndTime = endTime;
