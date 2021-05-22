@@ -13,6 +13,7 @@ namespace DbFiller
 		const int placesAmt = 25;
 
 		static SqlClient db;
+		static List<UserCar> usersCars;
 
 		static void Main(string[] args)
 		{
@@ -40,6 +41,7 @@ namespace DbFiller
 
 		static void InsertAdmins()
 		{
+			db.Accounts.Add(new Admin("Kirill", UserManager.HashPassword("123456"), "kirill@gmail.com", "Олешкевич", "Кирилл", "Вадимович"));
 			db.Accounts.Add(new Admin("Vlad", UserManager.HashPassword("123456"), "vlad@gmail.com", "Симакович", "Владислав", "Витальевич"));
 
 			db.SaveChanges();
@@ -50,18 +52,24 @@ namespace DbFiller
 
 			db.Accounts.AddRange(new List<User>()
 			{
-				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1", "1111AB-7"),
-				new User("login2", UserManager.HashPassword("password2"), "email2@gmail.com", "Фамилия2", "Имя2", "Отчество2", "1122AB-7"),
-				new User("login3", UserManager.HashPassword("password3"), "email3@gmail.com", "Фамилия3", "Имя3", "Отчество3", "1133AB-7"),
-				new User("login4", UserManager.HashPassword("password4"), "email4@gmail.com", "Фамилия4", "Имя4", "Отчество4", "1144AB-7"),
-				new User("login5", UserManager.HashPassword("password5"), "email5@gmail.com", "Фамилия5", "Имя5", "Отчество5", "1155AB-7"),
-				new User("login6", UserManager.HashPassword("password6"), "email6@gmail.com", "Фамилия6", "Имя6", "Отчество6", "1166AB-7"),
-				new User("login7", UserManager.HashPassword("password7"), "email7@gmail.com", "Фамилия7", "Имя7", "Отчество7", "1177AB-7"),
-				new User("login8", UserManager.HashPassword("password8"), "email8@gmail.com", "Фамилия8", "Имя8", "Отчество8", "1188AB-7"),
-				new User("login9", UserManager.HashPassword("password9"), "email9@gmail.com", "Фамилия9", "Имя9", "Отчество9", "1199AB-7"),
+				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1"),
+				new User("login2", UserManager.HashPassword("password2"), "email2@gmail.com", "Фамилия2", "Имя2", "Отчество2"),
+				new User("login3", UserManager.HashPassword("password3"), "email3@gmail.com", "Фамилия3", "Имя3", "Отчество3"),
+				new User("login4", UserManager.HashPassword("password4"), "email4@gmail.com", "Фамилия4", "Имя4", "Отчество4"),
+				new User("login5", UserManager.HashPassword("password5"), "email5@gmail.com", "Фамилия5", "Имя5", "Отчество5"),
+				new User("login6", UserManager.HashPassword("password6"), "email6@gmail.com", "Фамилия6", "Имя6", "Отчество6"),
+				new User("login7", UserManager.HashPassword("password7"), "email7@gmail.com", "Фамилия7", "Имя7", "Отчество7"),
+				new User("login8", UserManager.HashPassword("password8"), "email8@gmail.com", "Фамилия8", "Имя8", "Отчество8"),
+				new User("login9", UserManager.HashPassword("password9"), "email9@gmail.com", "Фамилия9", "Имя9", "Отчество9"),
 			});
 
 			db.SaveChanges();
+
+			var rndm = new Random();
+			usersCars = SqlClient.GetUsers()
+				.Select(user => 
+					new UserCar(user, $"{rndm.Next(0, 10000).ToString().PadLeft(4, '0')}AB-7"))
+				.ToList();
 		}
 
 		static void InsertBookings()
@@ -93,7 +101,7 @@ namespace DbFiller
 						var user = freeUsers[rndm.Next(0, freeUsers.Count)];
 						var place = freePlaces[rndm.Next(0, freePlaces.Count)];
 
-						newBooking = new Booking(user, place, i, DateTime.Now);
+						newBooking = new Booking(user, place, i, DateTime.Now, usersCars.Find(uc => uc.User == user).Car);
 
 						currentBookings.Add(newBooking);
 						freeUsers.Remove(user);
@@ -124,6 +132,18 @@ namespace DbFiller
 			}
 
 			static bool Roll(double chance) => rndm.Next(0, 101) <= chance;
+		}
+
+		struct UserCar
+		{
+			public User User;
+			public string Car;
+
+			public UserCar(User user, string car)
+			{
+				User = user;
+				Car = car;
+			}
 		}
 	}
 }

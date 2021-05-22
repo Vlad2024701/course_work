@@ -14,9 +14,6 @@ namespace AutoParking.Services
 		static UserManager()
 		{
 			AccountType = AccountType.None;
-
-			//Login("Kirill", "123456");
-			Login("login1", "password1");
 		}
 
 		public static bool Login(string login, string password)
@@ -40,7 +37,7 @@ namespace AutoParking.Services
 			return true;
 		}
 
-		public static (bool result, string error) Register(string login, string password, string email, string surname, string name, string middleName, string car = null)
+		public static (bool result, string error) Register(string login, string password, string email, string surname, string name, string middleName)
 		{
 			try
 			{
@@ -54,7 +51,7 @@ namespace AutoParking.Services
 
 				var hashedPassword = HashPassword(password);
 
-				db.Accounts.Add(new User(login, hashedPassword, email, surname, name, middleName, car));
+				db.Accounts.Add(new User(login, hashedPassword, email, surname, name, middleName));
 				db.SaveChanges();
 
 				return (true, null);

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -16,27 +18,6 @@ namespace AutoParking.ViewModels
 		public static Place InitialPlace { get; set; }
 
 		public Place Place { get; }
-
-		private string _surname = string.Empty;
-		public string Surname
-		{
-			get { return _surname.Trim(); }
-			set { SetProperty(ref _surname, value); }
-		}
-
-		private string _name = string.Empty;
-		public string Name
-		{
-			get { return _name.Trim(); }
-			set { SetProperty(ref _name, value); }
-		}
-
-		private string _middleName = string.Empty;
-		public string MiddleName
-		{
-			get { return _middleName.Trim(); }
-			set { SetProperty(ref _middleName, value); }
-		}
 
 		private string _hours = string.Empty;
 		public string Hours
@@ -65,6 +46,10 @@ namespace AutoParking.ViewModels
 			set { SetProperty(ref _sum, value); }
 		}
 
+		public List<string> CarsHistory { get; }
+
+		public string SelectedCar { set => CarNumber = value?? string.Empty; }
+
 		public string Error => throw new NotImplementedException();
 
 		public string this[string columnName] => Validate(columnName);
@@ -83,6 +68,10 @@ namespace AutoParking.ViewModels
 
 			BookPlaceCommand = new RelayCommand(OnBookPlaceCommandExecuted, CanBookPlaceCommandExecute);
 
+			CarsHistory = SqlClient.GetInstance().Bookings.ToList()
+				.Where(booking => booking.User == UserManager.CurrentUser as User)
+				.Select(booking => booking.CarNumber).Distinct().ToList();
+				
 			Place = InitialPlace;
 			InitialPlace = null;
 		}
@@ -110,9 +99,6 @@ namespace AutoParking.ViewModels
 		{
 			string errors = string.Empty;
 
-			errors += Validate("Surname") + "\n";
-			errors += Validate("Name") + "\n";
-			errors += Validate("MiddleName") + "\n";
 			errors += Validate("Hours") + "\n";
 			errors += Validate("CarNumber") + "\n";
 
@@ -128,39 +114,6 @@ namespace AutoParking.ViewModels
 
 			switch (columnName)
 			{
-				case "Surname":
-					{
-						if (string.IsNullOrEmpty(Surname))
-							return "Введите фамилию";
-
-						var (isValid, forbiddenSymbols) = Validator.Validate(Surname, Validator.NameRegex);
-
-						if (!isValid)
-							return $"Введены недопустимые символы: {Validator.JoinSymbols(forbiddenSymbols)}";
-					}
-					break;
-				case "Name":
-					{
-						if (string.IsNullOrEmpty(Name))
-							return "Введите имя";
-
-						var (isValid, forbiddenSymbols) = Validator.Validate(Name, Validator.NameRegex);
-
-						if (!isValid)
-							return $"Введены недопустимые символы: {Validator.JoinSymbols(forbiddenSymbols)}";
-					}
-					break;
-				case "MiddleName":
-					{
-						if (string.IsNullOrEmpty(MiddleName))
-							return "Введите отчество";
-
-						var (isValid, forbiddenSymbols) = Validator.Validate(MiddleName, Validator.NameRegex);
-
-						if (!isValid)
-							return $"Введены недопустимые символы: {Validator.JoinSymbols(forbiddenSymbols)}";
-					}
-					break;
 				case "Hours":
 					{
 						if (string.IsNullOrEmpty(Hours))

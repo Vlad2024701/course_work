@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:AutoParking.ViewModels"
-        Title="BookingWindow" Height="450" Width="800" ResizeMode="NoResize">
+        Title="BookingWindow" Height="350" Width="800" ResizeMode="NoResize">
 
     <Window.DataContext>
         <vm:BookingViewModel/>
@@ -18,14 +18,12 @@
             <RowDefinition Height="55"></RowDefinition>
             <RowDefinition Height="55"></RowDefinition>
             <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition Height="55"></RowDefinition>
-            <RowDefinition Height="55"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
@@ -39,41 +37,11 @@
         <TextBlock Text="{Binding Place.Id}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Введите данные для бронирования парковочного места" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Фамилия"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Имя"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Отчество"/>
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Время стоянки (часов)"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" Text="Номер авто"/>
-        <TextBlock Grid.Row="6" Grid.Column="0" Text="Итого к оплате (BYN)"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Время стоянки (часов)"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Номер авто"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Итого к оплате (BYN)"/>
 
-        <TextBox materialDesign:HintAssist.Hint="Иванов" Grid.Column="1" Grid.Row="1">
-            <TextBox.Text>
-                <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox materialDesign:HintAssist.Hint="Иван" Grid.Column="1" Grid.Row="2">
-            <TextBox.Text>
-                <Binding Path="Name" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox materialDesign:HintAssist.Hint="Иванович" Grid.Column="1" Grid.Row="3">
-            <TextBox.Text>
-                <Binding Path="MiddleName" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <TextBox x:Name="Hours_TextBox" KeyDown="Hours_TextBox_KeyDown" materialDesign:HintAssist.Hint="24" Grid.Column="1" Grid.Row="4">
+        <TextBox x:Name="Hours_TextBox" KeyDown="Hours_TextBox_KeyDown" materialDesign:HintAssist.Hint="24" Grid.Column="1" Grid.Row="1">
             <TextBox.Text>
                 <Binding Path="Hours" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -82,7 +50,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox materialDesign:HintAssist.Hint="1234AB-7" Grid.Column="1" Grid.Row="5">
+        <TextBox materialDesign:HintAssist.Hint="1234AB-7" Grid.Column="1" Grid.Row="2">
             <TextBox.Text>
                 <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
@@ -91,9 +59,15 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <TextBox Text="{Binding Sum}" materialDesign:HintAssist.Hint="0" Grid.Column="1" Grid.Row="6" IsReadOnly="True"/>
+        <Grid Grid.Row="2" Grid.Column="2" Margin="20 0">
+        <ComboBox SelectedItem="{Binding SelectedCar}" ItemsSource="{Binding CarsHistory}"
+                  materialDesign:HintAssist.Hint="Выберите машину из истории" materialDesign:HintAssist.HintOpacity=".26"
+                  IsEditable="False" VerticalAlignment="Bottom" materialDesign:TextFieldAssist.HasClearButton="True">
+        </ComboBox>
+        </Grid>
+        <TextBox Text="{Binding Sum}" materialDesign:HintAssist.Hint="0" Grid.Column="1" Grid.Row="3" IsReadOnly="True"/>
 
-        <Button Grid.Column="2" Grid.Row="5" Grid.RowSpan="2" Margin="40 0" Content="Забронировать"
+        <Button Grid.ColumnSpan="3" Grid.Row="4" Margin="200 20" Content="Забронировать"
                 Command="{Binding BookPlaceCommand}"/>
     </Grid>
 </Window>
