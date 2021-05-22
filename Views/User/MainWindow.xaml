@@ -12,25 +12,25 @@
         MinHeight="600" MinWidth="865">
 
     <Window.DataContext>
-        <vm:MainViewModel/>
+        <vm:MainViewModel />
     </Window.DataContext>
 
     <Window.Resources>
-        <vm:PlacesInfoViewModel x:Key="PlacesInfoViewModel"/>
-        <cmd:OpenBookingCommand x:Key="OpenBookingCommand"/>
+        <vm:PlacesInfoViewModel x:Key="PlacesInfoViewModel" />
+        <cmd:OpenBookingCommand x:Key="OpenBookingCommand" />
 
         <DataTemplate x:Key="ButtonCard" DataType="{x:Type models:Place}">
             <Button Content="{Binding Id}" Command="{StaticResource OpenBookingCommand}" CommandParameter="{Binding}"
-                    Width="150" Height="50" >
+                    Width="150" Height="50">
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="16" />
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding IsBooked, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                                <Setter Property="Background" Value="OrangeRed"/>
+                                <Setter Property="Background" Value="OrangeRed" />
                             </DataTrigger>
                             <DataTrigger Binding="{Binding IsBooked, UpdateSourceTrigger=PropertyChanged}" Value="False">
-                                <Setter Property="Background" Value="Gray"/>
+                                <Setter Property="Background" Value="Gray" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -43,15 +43,15 @@
         <StackPanel DockPanel.Dock="Top" VerticalAlignment="Top">
             <materialDesign:ColorZone Mode="PrimaryMid">
                 <Grid Height="50">
-                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0"/>
+                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" />
 
                     <Button Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Right"
                             Margin="0 0 20 0"
                             Command="{Binding LogoutCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Logout"/>
-                                <TextBlock Text="Выход"/>
+                                <materialDesign:PackIcon Kind="Logout" />
+                                <TextBlock Text="Выход" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -64,18 +64,18 @@
                 <ListBox ItemsSource="{Binding Places}" ItemTemplate="{StaticResource ButtonCard}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel/>
+                            <WrapPanel />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
 
                 <StackPanel Orientation="Horizontal">
                     <Button x:Name="PlaceGray" Background="Gray" />
-                    <TextBlock Text=" - Место доступное для бронирования" Style="{StaticResource MaterialDesignBody1TextBlock}"  VerticalAlignment="Center"/>
+                    <TextBlock Text=" - Место доступное для бронирования" Style="{StaticResource MaterialDesignBody1TextBlock}"  VerticalAlignment="Center" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button x:Name="PlaceRed"  Background="OrangeRed"/>
-                    <TextBlock Text=" - Место занято" Style="{StaticResource MaterialDesignBody1TextBlock}" VerticalAlignment="Center"/>
+                    <Button x:Name="PlaceRed"  Background="OrangeRed" />
+                    <TextBlock Text=" - Место занято" Style="{StaticResource MaterialDesignBody1TextBlock}" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </Grid>

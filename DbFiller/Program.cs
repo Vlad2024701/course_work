@@ -8,14 +8,14 @@ using AutoParking.Services;
 
 namespace DbFiller
 {
-	class Program
+	internal class Program
 	{
-		const int placesAmt = 25;
+		private const int placesAmt = 25;
 
-		static SqlClient db;
-		static List<UserCar> usersCars;
+		private static SqlClient db;
+		private static List<UserCar> usersCars;
 
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
 			db = SqlClient.GetInstance(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
 
@@ -31,7 +31,7 @@ namespace DbFiller
 			Console.WriteLine("Готово");
 		}
 
-		static void InsertPlaces()
+		private static void InsertPlaces()
 		{
 			for (int i = 0; i < placesAmt; i++)
 				db.Places.Add(new Place());
@@ -39,16 +39,15 @@ namespace DbFiller
 			db.SaveChanges();
 		}
 
-		static void InsertAdmins()
+		private static void InsertAdmins()
 		{
 			db.Accounts.Add(new Admin("Vlad", UserManager.HashPassword("123456"), "vlad@gmail.com", "Симакович", "Владислав", "Витальевич"));
 
 			db.SaveChanges();
 		}
 
-		static void InsertUsers()
+		private static void InsertUsers()
 		{
-
 			db.Accounts.AddRange(new List<User>()
 			{
 				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1"),
@@ -66,12 +65,12 @@ namespace DbFiller
 
 			var rndm = new Random();
 			usersCars = SqlClient.GetUsers()
-				.Select(user => 
+				.Select(user =>
 					new UserCar(user, $"{rndm.Next(0, 10000).ToString().PadLeft(4, '0')}AB-7"))
 				.ToList();
 		}
 
-		static void InsertBookings()
+		private static void InsertBookings()
 		{
 			var bookings = Simulation.Simulate(SqlClient.GetUsers(), db.Places.ToList(), DateTime.Now.AddDays(-30));
 
@@ -79,9 +78,9 @@ namespace DbFiller
 			db.SaveChanges();
 		}
 
-		static class Simulation
+		private static class Simulation
 		{
-			static readonly Random rndm = new Random();
+			private static readonly Random rndm = new Random();
 
 			public static List<Booking> Simulate(List<User> users, List<Place> places, DateTime initialDate)
 			{
@@ -130,10 +129,10 @@ namespace DbFiller
 				return result;
 			}
 
-			static bool Roll(double chance) => rndm.Next(0, 101) <= chance;
+			private static bool Roll(double chance) => rndm.Next(0, 101) <= chance;
 		}
 
-		struct UserCar
+		private struct UserCar
 		{
 			public User User;
 			public string Car;

@@ -8,21 +8,26 @@ namespace AutoParking.Models
 	{
 		[Key]
 		public int Id { get; set; }
+
 		[Required]
 		public AccountType AccountType { get; set; }
 
 		[Required]
 		public string Login { get; set; }
+
 		[Required]
 		public string Password { get; set; }
+
 		[Required]
 		[EmailAddress]
 		public string EMail { get; set; }
 
 		[Required]
 		public string Surname { get; set; }
+
 		[Required]
 		public string Name { get; set; }
+
 		[Required]
 		public string MiddleName { get; set; }
 

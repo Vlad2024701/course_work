@@ -1,55 +1,45 @@
 ﻿<Page x:Class="AutoParking.Views.Admin.PlacesInfoPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AutoParking.Views.Admin"
-      xmlns:vm="clr-namespace:AutoParking.ViewModels"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-      mc:Ignorable="d" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="clr-namespace:AutoParking.ViewModels"
+      mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="1000"
       Title="PlacesInfoPage">
 
     <Page.DataContext>
-        <vm:PlacesInfoViewModel/>
+        <vm:PlacesInfoViewModel />
     </Page.DataContext>
 
-    <Grid Background="Bisque">
-        <StackPanel>
-            <Button Style="{StaticResource MaterialDesignRaisedButton}"
-                        Margin="800 10 20 0" Command="{Binding SearchCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Search" VerticalAlignment="Center" Margin="0 0 5 0"/>
-                    <TextBlock Text="Поиск" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            <DataGrid ItemsSource="{Binding Places}" Background="Bisque" AutoGenerateColumns="False" IsReadOnly="True"
+    <DockPanel Background="Bisque">
+        <DataGrid ItemsSource="{Binding Places}" Background="Bisque" AutoGenerateColumns="False" IsReadOnly="True"
                   VirtualizingPanel.ScrollUnit="Pixel">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="Место" Width="80"/>
-                    <DataGridCheckBoxColumn Binding="{Binding IsBooked, Mode=OneWay}" Header="Занято" Width="80"/>
-                    <DataGridTextColumn Binding="{Binding CurrentBooking.User.FullName}" Header="ФИО" Width="200"/>
-                    <DataGridTextColumn Binding="{Binding CurrentBooking.CarNumber}" Header="Номер машины" Width="200"/>
-                    <DataGridTextColumn Binding="{Binding CurrentBooking.StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
-                    <DataGridTextColumn Binding="{Binding CurrentBooking.EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
-                </DataGrid.Columns>
-                <DataGrid.RowDetailsTemplate>
-                    <DataTemplate>
-                        <materialDesign:Card Margin="10">
-                            <DataGrid ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" IsReadOnly="True"
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="Место" Width="80" />
+                <DataGridCheckBoxColumn Binding="{Binding IsBooked, Mode=OneWay}" Header="Занято" Width="80" />
+                <DataGridTextColumn Binding="{Binding CurrentBooking.User.FullName}" Header="ФИО" Width="200" />
+                <DataGridTextColumn Binding="{Binding CurrentBooking.CarNumber}" Header="Номер машины" Width="200" />
+                <DataGridTextColumn Binding="{Binding CurrentBooking.StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200" />
+                <DataGridTextColumn Binding="{Binding CurrentBooking.EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200" />
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <materialDesign:Card Margin="10">
+                        <DataGrid ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" IsReadOnly="True"
                               VirtualizingPanel.ScrollUnit="Pixel">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="80"/>
-                                    <DataGridTextColumn Binding="{Binding User.FullName}" Header="ФИО" Width="200"/>
-                                    <DataGridTextColumn Binding="{Binding CarNumber}" Header="Номер машины" Width="200"/>
-                                    <DataGridTextColumn Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200"/>
-                                    <DataGridTextColumn Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </materialDesign:Card>
-                    </DataTemplate>
-                </DataGrid.RowDetailsTemplate>
-            </DataGrid>
-        </StackPanel>
-    </Grid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Id}" Header="ID" Width="80" />
+                                <DataGridTextColumn Binding="{Binding User.FullName}" Header="ФИО" Width="200" />
+                                <DataGridTextColumn Binding="{Binding CarNumber}" Header="Номер машины" Width="200" />
+                                <DataGridTextColumn Binding="{Binding StartTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Время брони" Width="200" />
+                                <DataGridTextColumn Binding="{Binding EndTime, StringFormat=\{0:dd.MM.yy HH:mm:ss\}}" Header="Окончание брони" Width="200" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </materialDesign:Card>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </DockPanel>
 </Page>

@@ -23,6 +23,9 @@ namespace AutoParking.Models
 
 		public bool IsBooked => CurrentBooking != null;
 
-		public Place() { Id = 0; }
+		public Place()
+		{
+			Id = 0;
+		}
 	}
 }

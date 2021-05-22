@@ -9,7 +9,7 @@
         Title="BookingWindow" Height="350" Width="800" ResizeMode="NoResize">
 
     <Window.DataContext>
-        <vm:BookingViewModel/>
+        <vm:BookingViewModel />
     </Window.DataContext>
 
     <Grid Margin="20 0 0 0">
@@ -27,25 +27,25 @@
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
-                <Setter Property="Margin" Value="10 0 0 0"/>
-                <Setter Property="VerticalAlignment" Value="Bottom"/>
+                <Setter Property="Margin" Value="10 0 0 0" />
+                <Setter Property="VerticalAlignment" Value="Bottom" />
             </Style>
             <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                <Setter Property="VerticalContentAlignment" Value="Bottom" />
             </Style>
         </Grid.Resources>
-        <TextBlock Text="{Binding Place.Id}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="{Binding Place.Id}" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Введите данные для бронирования парковочного места" Grid.ColumnSpan="3" VerticalAlignment="Center"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Время стоянки (часов)"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Номер авто"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Итого к оплате (BYN)"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Введите данные для бронирования парковочного места" Grid.ColumnSpan="3" VerticalAlignment="Center" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Время стоянки (часов)" />
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Номер авто" />
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Итого к оплате (BYN)" />
 
         <TextBox x:Name="Hours_TextBox" KeyDown="Hours_TextBox_KeyDown" materialDesign:HintAssist.Hint="24" Grid.Column="1" Grid.Row="1">
             <TextBox.Text>
                 <Binding Path="Hours" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
+                        <DataErrorValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -54,7 +54,7 @@
             <TextBox.Text>
                 <Binding Path="CarNumber" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
-                        <DataErrorValidationRule/>
+                        <DataErrorValidationRule />
                     </Binding.ValidationRules>
                 </Binding>
             </TextBox.Text>
@@ -65,9 +65,9 @@
                   IsEditable="False" VerticalAlignment="Bottom" materialDesign:TextFieldAssist.HasClearButton="True">
         </ComboBox>
         </Grid>
-        <TextBox Text="{Binding Sum}" materialDesign:HintAssist.Hint="0" Grid.Column="1" Grid.Row="3" IsReadOnly="True"/>
+        <TextBox Text="{Binding Sum}" materialDesign:HintAssist.Hint="0" Grid.Column="1" Grid.Row="3" IsReadOnly="True" />
 
         <Button Grid.ColumnSpan="3" Grid.Row="4" Margin="200 20" Content="Забронировать"
-                Command="{Binding BookPlaceCommand}"/>
+                Command="{Binding BookPlaceCommand}" />
     </Grid>
 </Window>

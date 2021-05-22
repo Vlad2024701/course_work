@@ -9,14 +9,14 @@ namespace AutoParking.Views.Admin
 	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
-    {
+	{
 		public static MainWindow Instance { get; private set; }
 		public static Pages CurrentPage { get; private set; }
 
-        public MainWindow()
-        {
+		public MainWindow()
+		{
 			Instance = this;
-            InitializeComponent();
+			InitializeComponent();
 			(DataContext as MainViewModel).CloseRequest += (sender, e) => Close();
 
 			SwitchPage(Pages.Places);
@@ -33,12 +33,15 @@ namespace AutoParking.Views.Admin
 				case Pages.PlacesInfo:
 					content = new PlacesInfoPage();
 					break;
+
 				case Pages.Places:
 					content = new PlacesPage();
 					break;
+
 				case Pages.UsersInfo:
 					content = new UsersInfoPage();
 					break;
+
 				default:
 					MessageBox.Show("Страница не найдена");
 					content = new PlacesPage();

@@ -8,11 +8,11 @@ namespace AutoParking.Views.User
 	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-            (DataContext as MainViewModel).CloseRequest += (sender, e) => Close();
-        }
-    }
+	{
+		public MainWindow()
+		{
+			InitializeComponent();
+			(DataContext as MainViewModel).CloseRequest += (sender, e) => Close();
+		}
+	}
 }
