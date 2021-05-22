@@ -4,9 +4,9 @@ using AutoParking.Services;
 
 using System.Collections.Generic;
 using System.Linq;
-
+ 
 namespace AutoParking.ViewModels
-{
+{ 
 	class PlacesInfoViewModel : ViewModel
     {
         public static PlacesInfoViewModel Instance { get; private set; }
