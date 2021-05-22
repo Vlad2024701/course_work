@@ -1,10 +1,11 @@
 ﻿
+using MaterialDesignThemes.Wpf;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace AutoParking.Models
 {
-	public class Booking
+    public class Booking
     {
         public const double pricePerHour = 1;
 

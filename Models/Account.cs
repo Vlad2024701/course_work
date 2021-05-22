@@ -38,7 +38,6 @@ namespace AutoParking.Models
 		{
 			Id = 0;
 			AccountType = type;
-
 			Login = login;
 			Password = password;
 			EMail = eMail;
