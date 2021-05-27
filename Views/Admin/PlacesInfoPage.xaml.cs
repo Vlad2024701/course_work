@@ -6,10 +6,10 @@ namespace AutoParking.Views.Admin
 	/// Логика взаимодействия для PlacesInfoPage.xaml
 	/// </summary>
 	public partial class PlacesInfoPage : Page
-    {
-        public PlacesInfoPage()
-        {
-            InitializeComponent();
-        }
-    }
+	{
+		public PlacesInfoPage()
+		{
+			InitializeComponent();
+		}
+	}
 }

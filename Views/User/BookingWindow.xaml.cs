@@ -9,12 +9,12 @@ namespace AutoParking.Views.User
 	/// Логика взаимодействия для BookingWindow.xaml
 	/// </summary>
 	public partial class BookingWindow : Window
-    {
-        public BookingWindow()
-        {
-            InitializeComponent();
-            (DataContext as BookingViewModel).CloseRequest += (sender, e) => Close();
-        }
+	{
+		public BookingWindow()
+		{
+			InitializeComponent();
+			(DataContext as BookingViewModel).CloseRequest += (sender, e) => Close();
+		}
 
 		private void Hours_TextBox_KeyDown(object sender, KeyEventArgs e)
 		{
@@ -25,4 +25,3 @@ namespace AutoParking.Views.User
 		}
 	}
 }
-

@@ -3,7 +3,7 @@ using System.IO;
 
 namespace AutoParking.Services
 {
-	class Logger
+	internal class Logger
 	{
 		public const string fileName = "autoparking.log";
 

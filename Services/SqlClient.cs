@@ -9,7 +9,7 @@ using AutoParking.Models;
 namespace AutoParking.Services
 {
 	public class SqlClient : DbContext
-    {
+	{
 		#region Connection
 
 		private static readonly string connectionString;
@@ -21,8 +21,7 @@ namespace AutoParking.Services
 			Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SqlClient>());
 		}
 
-		#endregion
-
+		#endregion Connection
 
 		#region Singleton
 
@@ -42,23 +41,25 @@ namespace AutoParking.Services
 			return _instance;
 		}
 
-		private SqlClient() : base(connectionString) { }
+		private SqlClient() : base(connectionString)
+		{
+		}
 
-		private SqlClient(string connectionString) : base(connectionString) { }
+		private SqlClient(string connectionString) : base(connectionString)
+		{
+		}
 
-		#endregion
-
+		#endregion Singleton
 
 		#region Tables
 
-        public DbSet<Booking> Bookings { get; set; }
+		public DbSet<Booking> Bookings { get; set; }
 
-        public DbSet<Place> Places { get; set; }
+		public DbSet<Place> Places { get; set; }
 
-        public DbSet<Account> Accounts { get; set; }
+		public DbSet<Account> Accounts { get; set; }
 
-		#endregion
-
+		#endregion Tables
 
 		#region Methods
 
@@ -70,6 +71,22 @@ namespace AutoParking.Services
 			.Where(place => !place.Bookings.Any(booking => booking.StartTime < time && booking.EndTime > time))
 			.ToList();
 
-        #endregion
-    }
+		public static List<User> SearchUsers(string query)
+		{
+			query = query?.ToLower();
+
+			if (!string.IsNullOrEmpty(query))
+			{
+				var tags = query.Split(' ');
+
+				return
+					GetUsers().Where(booking =>
+						tags.All(tag => booking.ToString().ToLower().Contains(tag))).ToList();
+			}
+			else
+				return GetUsers();
+		}
+
+		#endregion Methods
+	}
 }

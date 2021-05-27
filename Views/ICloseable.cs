@@ -2,7 +2,7 @@
 
 namespace AutoParking.ViewModels
 {
-	interface ICloseable
+	internal interface ICloseable
 	{
 		event EventHandler CloseRequest;
 	}

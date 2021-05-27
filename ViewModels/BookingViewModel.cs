@@ -20,6 +20,7 @@ namespace AutoParking.ViewModels
 		public Place Place { get; }
 
 		private string _hours = string.Empty;
+
 		public string Hours
 		{
 			get { return _hours.Replace('.', ',').Trim(); }
@@ -33,6 +34,7 @@ namespace AutoParking.ViewModels
 		}
 
 		private string _carNumber = string.Empty;
+
 		public string CarNumber
 		{
 			get { return _carNumber.Trim(); }
@@ -40,6 +42,7 @@ namespace AutoParking.ViewModels
 		}
 
 		private double _sum;
+
 		public double Sum
 		{
 			get { return _sum; }
@@ -48,12 +51,11 @@ namespace AutoParking.ViewModels
 
 		public List<string> CarsHistory { get; }
 
-		public string SelectedCar { set => CarNumber = value?? string.Empty; }
+		public string SelectedCar { set => CarNumber = value ?? string.Empty; }
 
 		public string Error => throw new NotImplementedException();
 
 		public string this[string columnName] => Validate(columnName);
-
 
 		public ICommand BookPlaceCommand { get; }
 
@@ -71,7 +73,7 @@ namespace AutoParking.ViewModels
 			CarsHistory = SqlClient.GetInstance().Bookings.ToList()
 				.Where(booking => booking.User == UserManager.CurrentUser as User)
 				.Select(booking => booking.CarNumber).Distinct().ToList();
-				
+
 			Place = InitialPlace;
 			InitialPlace = null;
 		}
@@ -87,11 +89,11 @@ namespace AutoParking.ViewModels
 
 			SqlClient.GetInstance().Bookings.Add(
 				new Booking(UserManager.CurrentUser as User, Place,
-								  DateTime.Now, DateTime.Now.AddHours(Convert.ToDouble(Hours)),_carNumber));
+								  DateTime.Now, DateTime.Now.AddHours(Convert.ToDouble(Hours)), _carNumber));
 
 			SqlClient.GetInstance().SaveChanges();
 
-			MessageBox.Show("Место успешно забронировано"); 
+			MessageBox.Show("Место успешно забронировано");
 			CloseRequest?.Invoke(this, EventArgs.Empty);
 		}
 
@@ -125,6 +127,7 @@ namespace AutoParking.ViewModels
 							return "Время стоянки должно быть более чем пол часа";
 					}
 					break;
+
 				case "CarNumber":
 					{
 						if (string.IsNullOrEmpty(CarNumber))

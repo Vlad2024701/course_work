@@ -11,7 +11,7 @@
         MinHeight="600" MinWidth="865">
 
     <Window.DataContext>
-        <vm:MainViewModel/>
+        <vm:MainViewModel />
     </Window.DataContext>
 
     <Window.Resources>
@@ -19,8 +19,8 @@
             <Button Content="{Binding Id}">
                 <Button.Style>
                     <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
-                        <Setter Property="Width" Value="120"/>
-                        <Setter Property="Height" Value="60"/>
+                        <Setter Property="Width" Value="120" />
+                        <Setter Property="Height" Value="60" />
                     </Style>
                 </Button.Style>
             </Button>
@@ -31,15 +31,15 @@
         <StackPanel DockPanel.Dock="Top" VerticalAlignment="Top">
             <materialDesign:ColorZone Mode="PrimaryMid">
                 <Grid Height="50">
-                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0"/>
+                    <TextBlock Text="{Binding UserName}" VerticalAlignment="Center" FontSize="20" Margin="20 0 0 0" />
 
                     <Button Width="100" Style="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Right"
                             Margin="0 0 20 0"
                             Command="{Binding LogoutCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="Logout"/>
-                                <TextBlock Text="Выход"/>
+                                <materialDesign:PackIcon Kind="Logout" />
+                                <TextBlock Text="Выход" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -50,20 +50,19 @@
                 <StackPanel Orientation="Horizontal" Margin="2">
                     <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                  Margin="4" IsChecked="True" Content="Места"
-                                 x:Name="Places_Button" Click="Places_Button_Click"/>
+                                 x:Name="Places_Button" Click="Places_Button_Click" />
 
                     <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                  Margin="4" IsChecked="False" Content="Информация о местах"
-                                 x:Name="PlacesInfo_Button" Click="PlacesInfo_Button_Click"/>
+                                 x:Name="PlacesInfo_Button" Click="PlacesInfo_Button_Click" />
 
                     <RadioButton Style="{StaticResource MaterialDesignTabRadioButton}"
                                  Margin="4" IsChecked="False" Content="Информация о пользователях"
-                                 x:Name="UsersInfo_Button" Click="UsersInfo_Button_Click"/>
+                                 x:Name="UsersInfo_Button" Click="UsersInfo_Button_Click" />
                 </StackPanel>
             </materialDesign:ColorZone>
         </StackPanel>
 
-        <Frame x:Name="MainContent" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-
+        <Frame x:Name="MainContent" DockPanel.Dock="Bottom" VerticalAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>
 </Window>

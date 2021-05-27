@@ -18,10 +18,14 @@ namespace AutoParking.Models
 		[NotMapped]
 		public string CarsStr => string.Join(" ", Cars).Trim();
 
-		public User() : base(Services.AccountType.User) { }
+		public User() : base(AccountType.User)
+		{
+		}
 
 		public User(string login, string password, string eMail, string surname, string name, string middleName)
-			: base(login, password, eMail, surname, name, middleName, Services.AccountType.User)
+			: base(login, password, eMail, surname, name, middleName, AccountType.User)
 		{ }
+
+		public override string ToString() => $"{Id} {FullName} {Login} {EMail} {CarsStr}";
 	}
 }

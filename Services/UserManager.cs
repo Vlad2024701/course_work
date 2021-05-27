@@ -1,8 +1,8 @@
-﻿using AutoParking.Models;
-
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+
+using AutoParking.Models;
 
 namespace AutoParking.Services
 {
@@ -44,7 +44,8 @@ namespace AutoParking.Services
 				var db = SqlClient.GetInstance();
 
 				if (db.Accounts.Any(item => item.Login == login))
-					return (false, "Логин уже занят"); ;
+					return (false, "Логин уже занят");
+				;
 
 				if (db.Accounts.Any(item => item.EMail == email))
 					return (false, "Почта уже занята");

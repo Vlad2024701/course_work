@@ -7,7 +7,7 @@ using AutoParking.Views.User;
 
 namespace AutoParking.Commands
 {
-	class OpenBookingCommand : Command
+	internal class OpenBookingCommand : Command
 	{
 		public static event Action BookingComplete;
 
