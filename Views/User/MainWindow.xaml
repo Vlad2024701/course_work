@@ -8,7 +8,7 @@
         xmlns:models="clr-namespace:AutoParking.Models"
         xmlns:cmd="clr-namespace:AutoParking.Commands"
         mc:Ignorable="d"
-        Title="UserBooking" Height="600" Width="865"
+        Title="Места автопарковки" Height="600" Width="865"
         MinHeight="600" MinWidth="865">
 
     <Window.DataContext>

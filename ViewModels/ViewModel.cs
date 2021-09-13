@@ -3,6 +3,8 @@ using System.Runtime.CompilerServices;
 
 namespace AutoParking.ViewModels
 {
+	//Этот интерфейс позволяет свойству объекта уведомлять связанный элемент управления об изменении свойства, 
+	//чтобы элемент управления мог отображать обновленные сведения.
 	public abstract class ViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;

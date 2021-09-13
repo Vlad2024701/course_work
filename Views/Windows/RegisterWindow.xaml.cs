@@ -1,7 +1,8 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
-
+using System.Windows.Media.Imaging;
 using AutoParking.Services;
 
 namespace AutoParking.Views.Windows
@@ -14,6 +15,9 @@ namespace AutoParking.Views.Windows
 		public RegisterWindow()
 		{
 			InitializeComponent();
+
+			Uri iconUri = new Uri(@"D:\2 курс\4 семестр\Курсач на сдачу\AutoParking\bin\Debug\images\car_23773.ico", UriKind.RelativeOrAbsolute);
+			this.Icon = BitmapFrame.Create(iconUri);
 		}
 
 		private bool CheckFields()
@@ -25,48 +29,77 @@ namespace AutoParking.Views.Windows
 			string name = textBox_Name.Text.Trim();
 			string surname = textBox_Surname.Text.Trim();
 			string middle = textBox_MiddleName.Text.Trim();
-			Regex emailRegex = new Regex(@"^([a-z\d\.-]+)@([a-z\d-]+)((\.([a-z]){2,4}])+)$", RegexOptions.IgnoreCase);
-			//Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
-			Regex nameRegex = new Regex(@"^([А-я]+|[A-z]){2,30}$");
+			//Regex emailRegex = new Regex(@"^([a-z\d\.-]+)@([a-z\d-]+)((\.([a-z]){2,4}])+)$", RegexOptions.IgnoreCase);
+			Regex emailRegex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+			Regex nameRegex = new Regex(@"^[А-Яа-яЁёA-Za-z \-]+$");
 			bool pass = true;
 
-			if (string.IsNullOrEmpty(name) && !nameRegex.IsMatch(name))
+			if (nameRegex.IsMatch(name))
+			{
+				textBox_Name.Background = Brushes.Transparent;
+			}
+			if (nameRegex.IsMatch(surname))
+			{
+				textBox_Surname.Background = Brushes.Transparent;
+			}
+			if (nameRegex.IsMatch(middle))
+			{
+				textBox_MiddleName.Background = Brushes.Transparent;
+			}
+			if (emailRegex.IsMatch(email))
+			{
+				textBox_Email.Background = Brushes.Transparent;
+			}
+			if (login.Length > 4 && login.Length < 35)
+			{
+				textBox_Login.Background = Brushes.Transparent;
+			}
+			if (pass1.Length > 4 && pass1.Length < 35)
+			{
+				PassBox1.Background = Brushes.Transparent;
+			}
+			if (pass1 == pass2)
+			{
+				PassBox2.Background = Brushes.Transparent;
+			}
+			////non/////
+			if (string.IsNullOrEmpty(name) || !nameRegex.IsMatch(name))
 			{
 				textBox_Name.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
 				textBox_Name.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (string.IsNullOrEmpty(surname) && !nameRegex.IsMatch(name))
+			if (string.IsNullOrEmpty(surname) || !nameRegex.IsMatch(surname))
 			{
 				textBox_Surname.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
 				textBox_Surname.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (string.IsNullOrEmpty(middle) && !nameRegex.IsMatch(middle))
+			if (string.IsNullOrEmpty(middle) || !nameRegex.IsMatch(middle))
 			{
 				textBox_MiddleName.ToolTip = "Поле не заполнено(2-30 символов) либо введены запрещенные символы";
 				textBox_MiddleName.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (login.Length < 4 || login.Length > 35)
+			if (login.Length < 4 || login.Length > 35)
 			{
 				textBox_Login.ToolTip = "Длина логина от 4 до 35 символов";
 				textBox_Login.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (pass1.Length < 4 || pass1.Length > 35)
+			if (pass1.Length < 4 || pass1.Length > 35)
 			{
 				PassBox1.ToolTip = "Длина пароля от 4 до 35 символов";
 				PassBox1.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (pass1 != pass2)
+			if (pass1 != pass2)
 			{
 				PassBox2.ToolTip = "Пароли не совпадают";
 				PassBox2.Background = Brushes.PaleVioletRed;
 				pass = false;
 			}
-			else if (emailRegex.IsMatch(email))
+			if (!emailRegex.IsMatch(email))
 			{
 				textBox_Email.ToolTip = "Некорректный email адрес";
 				textBox_Email.Background = Brushes.PaleVioletRed;
@@ -88,8 +121,8 @@ namespace AutoParking.Views.Windows
 			string password = PassBox1.Password.Trim();
 			string email = textBox_Email.Text.Trim().ToLower();
 			string name = textBox_Name.Text.Trim();
-			string surname = textBox_Name.Text.Trim();
-			string middle = textBox_Name.Text.Trim();
+			string surname = textBox_Surname.Text.Trim();
+			string middle = textBox_MiddleName.Text.Trim();
 
 			textBox_Login.ToolTip = null;
 			textBox_Login.Background = Brushes.Transparent;

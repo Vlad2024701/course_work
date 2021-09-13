@@ -123,7 +123,7 @@ namespace AutoParking.ViewModels
 
 						if (!double.TryParse(Hours, out double value))
 							return "Введите число";
-						else if (value < 0.5)
+						else if (value < 0.05)
 							return "Время стоянки должно быть более чем пол часа";
 					}
 					break;

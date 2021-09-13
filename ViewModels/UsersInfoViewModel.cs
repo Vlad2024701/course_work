@@ -25,7 +25,6 @@ namespace AutoParking.ViewModels
 		}
 
 		public ICommand SearchCommand { get; set; }
-
 		public List<User> SearchResult
 		{
 			get => _searchResult;
@@ -35,6 +34,7 @@ namespace AutoParking.ViewModels
 		private static bool CanSearchCommandExecute(object p) => true;
 
 		private void OnSearchCommandExecuted(object p) => Search();
+		
 
 		private void Search()
 		{

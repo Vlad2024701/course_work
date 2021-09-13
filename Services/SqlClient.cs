@@ -22,13 +22,14 @@ namespace AutoParking.Services
 		}
 
 		#endregion Connection
-
+		//DbContext: определяет контекст данных, используемый для взаимодействия с базой данных.
+		//DbSet/DbSet<TEntity>: представляет набор сущностей, хранящихся в базе данных
 		#region Singleton
 
 		private static SqlClient _instance;
 
 		public static SqlClient GetInstance()
-		{
+		{ 
 			if (_instance == null)
 				_instance = new SqlClient();
 			return _instance;

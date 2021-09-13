@@ -19,7 +19,8 @@ namespace AutoParking.Models
 			.Where(booking => booking.Place.Id == Id)
 			.OrderBy(item => item.StartTime).ToList();
 
-		public Booking CurrentBooking => SqlClient.GetInstance().Bookings.ToList().Where(item => item.Place.Id == Id && !item.IsEnded).FirstOrDefault();
+		public Booking CurrentBooking => SqlClient.GetInstance().Bookings.ToList()
+			.Where(item => item.Place.Id == Id && !item.IsEnded).FirstOrDefault();
 
 		public bool IsBooked => CurrentBooking != null;
 

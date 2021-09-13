@@ -42,6 +42,8 @@ namespace DbFiller
 		private static void InsertAdmins()
 		{
 			db.Accounts.Add(new Admin("Vlad", UserManager.HashPassword("123456"), "vlad@gmail.com", "Симакович", "Владислав", "Витальевич"));
+			db.Accounts.Add(new Admin("Roman", UserManager.HashPassword("123456"), "roman@gmail.com", "Заяц", "Роман", "Витальевич"));
+			db.Accounts.Add(new Admin("Kirill", UserManager.HashPassword("123456"), "kirill@gmail.com", "Олешкевич", "Кирилл", "Вадимович"));
 
 			db.SaveChanges();
 		}
@@ -50,15 +52,15 @@ namespace DbFiller
 		{
 			db.Accounts.AddRange(new List<User>()
 			{
-				new User("login1", UserManager.HashPassword("password1"), "email1@gmail.com", "Фамилия1", "Имя1", "Отчество1"),
-				new User("login2", UserManager.HashPassword("password2"), "email2@gmail.com", "Фамилия2", "Имя2", "Отчество2"),
-				new User("login3", UserManager.HashPassword("password3"), "email3@gmail.com", "Фамилия3", "Имя3", "Отчество3"),
-				new User("login4", UserManager.HashPassword("password4"), "email4@gmail.com", "Фамилия4", "Имя4", "Отчество4"),
-				new User("login5", UserManager.HashPassword("password5"), "email5@gmail.com", "Фамилия5", "Имя5", "Отчество5"),
-				new User("login6", UserManager.HashPassword("password6"), "email6@gmail.com", "Фамилия6", "Имя6", "Отчество6"),
-				new User("login7", UserManager.HashPassword("password7"), "email7@gmail.com", "Фамилия7", "Имя7", "Отчество7"),
-				new User("login8", UserManager.HashPassword("password8"), "email8@gmail.com", "Фамилия8", "Имя8", "Отчество8"),
-				new User("login9", UserManager.HashPassword("password9"), "email9@gmail.com", "Фамилия9", "Имя9", "Отчество9"),
+				new User("Darya", UserManager.HashPassword("password1"), "email1@gmail.com", "Иванова", "Дарья", "Ивановна"),
+				new User("Valya", UserManager.HashPassword("password2"), "email2@gmail.com", "Ермакович", "Валентин", "Игоревич"),
+				new User("Sanya", UserManager.HashPassword("password3"), "email3@gmail.com", "Гордеенков", "Александр", "Сергеевич"),
+				new User("Petr", UserManager.HashPassword("password4"), "email4@gmail.com", "Петрович", "Петр", "Петров"),
+				new User("Vitali", UserManager.HashPassword("password5"), "email5@gmail.com", "Адасько", "Виталий", "Анатольевич"),
+				new User("Daniil", UserManager.HashPassword("password6"), "email6@gmail.com", "Михалкевич", "Даниил", "Ильич"),
+				new User("Yana", UserManager.HashPassword("password7"), "email7@gmail.com", "Синявская", "Яна", "Павловна"),
+				new User("Oleg", UserManager.HashPassword("password8"), "email8@gmail.com", "Устьян", "Олег", "Константинович"),
+				new User("Vasya", UserManager.HashPassword("password9"), "email9@gmail.com", "Зуева", "Василина", "Акакьевна"),
 			});
 
 			db.SaveChanges();

@@ -33,5 +33,6 @@ namespace AutoParking.ViewModels
 			Application.Current.MainWindow = window;
 			window.Show();
 		}
+
 	}
 }
